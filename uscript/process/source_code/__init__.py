@@ -1,14 +1,14 @@
-from uscript.source import syntax_tree
+from uscript.source import syntax_tree, tools
+
 from .tokenizer import scan_line, scan_stream
 from .parser import Parser
 
 class SourceCodeProcessor(syntax_tree.Visitor):
-	def __init__(self, root):
-		super().__init__(root)
-		#from uscript.source import lexer, parser, ASTPrinter
-		#self.lexer = lexer
+	def __init__(self):
+		super().__init__()
+
 		self.parser = Parser()
-		#self.printer = ASTPrinter()
+		self.printer = tools.ASTPrinter()
 
 	def preUnit(self, unit):
 		print('processing ', unit.filename)
@@ -20,8 +20,8 @@ class SourceCodeProcessor(syntax_tree.Visitor):
 
 		unit.ast = self.parser(iter(unit.tokens))
 
-
-		self.printer(unit.ast)
+		for line in self.printer(unit.ast):
+			print(*line)
 
 		#return self.Skip
 

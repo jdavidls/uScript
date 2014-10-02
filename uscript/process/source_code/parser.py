@@ -34,40 +34,13 @@ class Parser:
 		self.token = token
 
 
-	def __call__(self, token_stream, level='Block'):
+	def __call__(self, token_stream):
 		self.token_stream = token_stream
 		self.current_line = 0
 		self.token = next(token_stream)
 		self.finish = False
 
-		return getattr(self, 'parse'+level)()
-
-	def parseUnit(self, token_stream):
-		self.parseBlock()
-
-	def parseBlock(self):
-		forward = self.parseExpression
-		if not isinstance(self.token, Begin):
-			return []
-
-		body = []
-		token = self.popToken()
-		while True:
-			token = self.token
-
-			if isinstance(token, Line):
-				self.popToken()
-				body.append(forward())
-				continue
-			elif isinstance(token, End):
-				self.popToken()
-			else:
-				self.popToken()
-				print('Unexpected', token)
-			break
-
-		return body
-
+		return self.parseExpression()
 
 	def parseExpression(self):
 		forward = self.parseSwitch

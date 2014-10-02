@@ -6,6 +6,7 @@ class ASTPrinter(Covisitor):
 		self.level = 0
 
 	def preNode(self, node):
+
 		yield from self.print(node)
 		self.level += 1
 

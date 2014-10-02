@@ -1,4 +1,4 @@
-from uscript.model import Visitor
+from uscript.source.syntax_tree import Visitor
 
 class FileSystemInjector(Visitor):
 	def preRoot(self, root):

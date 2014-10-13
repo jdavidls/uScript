@@ -2,7 +2,7 @@ from .location import Location
 from .syntax_tree import Node
 
 class Terminal(Node):
-	__slots__ = ('location', 'value', 'annotations')
+	__slots__ = ('value', 'location', 'annotations')
 	def __init__(self, value, *location):
 		self.location = Location(*location)
 		self.value = value
@@ -40,9 +40,15 @@ class Ampersand(PunctuationMark): pass
 class Asterisk(PunctuationMark): pass
 class At(PunctuationMark): pass
 
+class BracketClose(PunctuationMark): pass
+class BracketOpen(PunctuationMark): pass
+
+
 class Caret(PunctuationMark): pass
 class Colon(PunctuationMark): pass
 class Comma(PunctuationMark): pass
+class CurlyClose(PunctuationMark): pass
+class CurlyOpen(PunctuationMark): pass
 
 class Dot(PunctuationMark): pass
 
@@ -57,6 +63,8 @@ class Less(PunctuationMark): pass
 
 class Minus(PunctuationMark): pass
 
+class ParenthesisClose(PunctuationMark): pass
+class ParenthesisOpen(PunctuationMark): pass
 class Percent(PunctuationMark): pass
 class Pipe(PunctuationMark): pass
 class Plus(PunctuationMark): pass
@@ -65,14 +73,4 @@ class Question(PunctuationMark): pass
 
 class Semicolon(PunctuationMark): pass
 class Slash(PunctuationMark): pass
-
-class OpenParenthesis(PunctuationMark): pass
-class CloseParenthesis(PunctuationMark): pass
-
-class OpenBracket(PunctuationMark): pass
-class CloseBracket(PunctuationMark): pass
-
-class OpenCurly(PunctuationMark): pass
-class CloseCurly(PunctuationMark): pass
-
 

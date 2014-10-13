@@ -1,6 +1,7 @@
 
 class Node:
 	__slots__ = ()
+	## ITER FOR TUPLES?? TUPLES WITH SLOTS??
 	def visit(self, visitor):
 		return
 		yield
@@ -16,7 +17,8 @@ def visit_seq(seq):
 
 
 def generator(func):
-	"""Force to usea a function as a coroutine
+	"""
+	Force to usea a function as a coroutine
 	"""
 	import inspect
 	if inspect.isgeneratorfunction(func):
@@ -29,6 +31,8 @@ def generator(func):
 
 
 class Visitor:
+	'''
+	'''
 	def __init__(self):
 		self.methods_by_type = {}
 
@@ -61,6 +65,8 @@ class Visitor:
 
 		node = postorder(node) or node
 		return node
+
+
 
 
 class Covisitor:
@@ -96,3 +102,8 @@ class Covisitor:
 
 		node = (yield from postorder(node)) or node
 		return node
+
+
+class Processor:
+	def __call__(self, node):
+		''

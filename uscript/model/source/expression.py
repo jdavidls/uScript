@@ -161,6 +161,17 @@ class Xor(Binary):
 	def __str__(self):
 		return '{0.lvalue} ^ {0.rvalue}'.format(self)
 
+
+class ArrowLeft(Binary):
+	def __str__(self):
+		return '{0.lvalue} <- {0.rvalue}'.format(self)
+
+class Lambda(Binary):
+	def __str__(self):
+		return '{0.lvalue} -> {0.rvalue}'.format(self)
+
+
+
 # 	Comparison
 class LessThan(Binary):
 	def __str__(self):
@@ -209,7 +220,7 @@ class Assignment(Binary):
 		super().__init__(*args)
 		self.operator = operator
 	def __str__(self, operator=None):
-		return '{0.lvalue} || {0.rvalue}'.format(self)
+		return '{0.lvalue} = {0.rvalue}'.format(self)
 
 
 

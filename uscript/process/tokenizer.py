@@ -1,5 +1,5 @@
-from uscript.source import lexicon
-from uscript.source.lexicon import *
+from uscript.model.source import lexicon
+from uscript.model.source.lexicon import *
 
 punctuation_marks = {
 	# ascii punctuation
@@ -7,9 +7,14 @@ punctuation_marks = {
 	'*': 'Asterisk',
 	'@': 'At',
 
+	']': 'BracketClose',
+	'[': 'BracketOpen',
+
 	'^': 'Caret',
 	':': 'Colon',
 	',': 'Comma',
+	'}': 'CurlyClose',
+	'{': 'CurlyOpen',
 
 	'.': 'Dot',
 
@@ -24,6 +29,8 @@ punctuation_marks = {
 
 	'-': 'Minus',
 
+	')': 'ParenthesisClose',
+	'(': 'ParenthesisOpen',
 	'%': 'Percent',
 	'|': 'Pipe',
 	'+': 'Plus',
@@ -32,19 +39,6 @@ punctuation_marks = {
 
 	';': 'Semicolon',
 	'/': 'Slash',
-
-	'(': 'OpenParenthesis',
-	')': 'CloseParenthesis',
-
-	'[': 'OpenBracket',
-	']': 'CloseBracket',
-
-	'{': 'OpenCurly',
-	'}': 'CloseCurly',
-
-	# '·': 'InterPoint',
-	# '→': 'RightArrow',
-	# '←': 'LeftArrow',
 }
 
 text_delimitiers = {
@@ -118,7 +112,7 @@ def scan_line(line, line_number=0):
 
 		# parse id
 		elif c.isalpha() or c == '_':
-			while offset < line_length and line[offset].isidentifier():
+			while offset < line_length and (line[offset].isalnum() or line[offset] is '_'):
 				offset += 1
 
 			yield Identifier(line[start_offset:offset], line_number, start_offset, offset)
